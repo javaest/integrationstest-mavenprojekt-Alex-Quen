@@ -38,4 +38,18 @@ public class OrderServiceTest {
     public void testPlaceOrder_PaymentFailed() {
     	assertTrue(false);
     }
+	
+	@Test
+    public void testPlaceOrder_PaymentFailed() {
+        Order order = new Order(100.0);
+
+        when(paymentService.processPayment(order.getAmount())).thenReturn(false);
+
+        boolean result = orderService.placeOrder(order);
+
+
+        assertFalse(result);
+
+        verify(paymentService, times(1)).processPayment(order.getAmount());
+    }
 }
