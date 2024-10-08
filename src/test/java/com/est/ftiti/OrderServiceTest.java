@@ -41,7 +41,7 @@ public class OrderServiceTest {
 	
 	@Test
     public void testPlaceOrder_PaymentFailed() {
-        Order order = new Order(100.0);
+        Order order = new Order(50.0);
 
         when(paymentService.processPayment(order.getAmount())).thenReturn(false);
 
